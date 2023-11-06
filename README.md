@@ -42,6 +42,17 @@ virus 압축파일 비밀번호: infected
 
 
 
+### 실습. upload trojan
+
+##### 업로드
+![바이러스 파일 업로드](docs\images\001.png)
+
+
+##### 탐지성공
+![바이러스 탐지 성공](docs\images\002.png)
+
+
+
 
 
 
