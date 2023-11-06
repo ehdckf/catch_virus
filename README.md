@@ -3,7 +3,7 @@
 
 ```sh 
 
-	git clone 
+	git clone https://github.com/ehdckf/catch_virus.git
 
 	docker build . -t clamtest
 
