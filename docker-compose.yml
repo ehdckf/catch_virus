@@ -1,0 +1,11 @@
+version: "3"
+services:
+        clamav:
+                container_name: clamav
+                image: clamtest
+                volumes:
+                        - "/var/lib/clamav"
+                ports:
+                        - 4000:4000
+                expose:
+                        - "4000"
