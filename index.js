@@ -42,7 +42,6 @@ const PORT = 4000;
                 preHandler: upload.single("file"),
                 handler: async (request, reply) => {
                         console.log(request.file);
-                        fastify.log.info("Hello File!");
                         const filePath = request.file.path;
                         const { file, isInfected, viruses } = await ClamScan.isInfected(
                                 path.join(process.cwd(), filePath),

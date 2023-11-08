@@ -1,11 +1,15 @@
 version: "3"
 services:
         clamav:
-                container_name: clamav
-                image: clamtest
+                container_name: clamav2
+                image: clamtest:v2
                 volumes:
-                        - "/var/lib/clamav"
+                        - clamav_db:/var/lib/clamav
+                        - ./logs/:/app/logs
                 ports:
                         - 4000:4000
                 expose:
                         - "4000"
+                command: sh -c "sh init.sh"
+volumes:
+        clamav_db:

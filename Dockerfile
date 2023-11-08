@@ -23,6 +23,18 @@ RUN  sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf
 RUN  echo "TCPSocket 3310" >> /etc/clamav/clamd.conf
 RUN  sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
 
+RUN npm i -g pm2
+RUN npm i -g node-gyp
+
+RUN pm2 install pm2-logrotate && \
+	pm2 set pm2-logrotate:retain 'none' \
+	pm2 set pm2-logrotate:compress true \
+	pm2 set pm2-logrotate:dateFormat YYYY-MM-DD_HH-mm-ss \
+	pm2 set pm2-logrotate:max_size 10G \
+	pm2 set pm2-logrotate:rotateInterval '0 */4 * * * ' \
+	pm2 set pm2-logrotate:rotateModule true \
+	pm2 set pm2-logrotate:workerInterval 30
+
 
 VOLUME ["/var/lib/clamav"]
 
@@ -36,4 +48,3 @@ RUN  npm install
 # Copy supervisor config
 COPY  ./configs/supervisord.conf /etc/supervisor/conf.d/supervisord-nodejs.conf
 EXPOSE 4000
-CMD  ["/usr/bin/supervisord", "-n"]
